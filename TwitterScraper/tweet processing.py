@@ -19,6 +19,16 @@ mypath = "/Users/shaoc/OneDrive - Massachusetts Institute of Technology/Twitter"
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 suffix = "2020.csv"
 
+def deEmojify(text):
+    regrex_pattern = re.compile(pattern = "["
+        u"\U0001F600-\U0001F64F"  # emoticons
+        u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+        u"\U0001F680-\U0001F6FF"  # transport & map symbols
+        u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
+                           "]+", flags = re.UNICODE)
+    return regrex_pattern.sub(r'',text)
+
+
 for file in onlyfiles:
     
     if str.endswith(file, suffix):
@@ -37,6 +47,7 @@ for file in onlyfiles:
           raw_text = re.sub(r"[http]\S+", "", raw_text) # remove urls
           raw_text = re.sub(r"[$][A-Za-z][\S]*", "", raw_text) # remove $tickers
           raw_text = re.sub(r"[\n]", "", raw_text) # remove new line (\n)
+          raw_text = deEmojify(raw_text) # remove emoji
           raw_texts[idx] = raw_text
         
         df["Text_clean"] = raw_texts # save data in new column
