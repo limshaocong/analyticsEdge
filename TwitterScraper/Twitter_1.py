@@ -39,9 +39,8 @@ def get_tweets(ticker):
     # Export dataframe into a CSV
     tweets_df.to_csv(file_name , sep = ',', index = False)
     
-tickers = pd.read_csv("Tickers_reduced.csv")
+tickers = pd.read_csv("Tickers_reduced_Jean.csv")
 tickers = tickers["Tickers"].tolist()
-tickers.reverse()
 
 for ticker in tickers:
     get_tweets(ticker)
