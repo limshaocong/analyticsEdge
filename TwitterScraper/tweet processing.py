@@ -26,11 +26,11 @@ def deEmojify(text):
         u"\U0001F680-\U0001F6FF"  # transport & map symbols
         u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
                            "]+", flags = re.UNICODE)
-    return regrex_pattern.sub(r'',text)
+    return regrex_pattern.sub(r'', text)
 
 def deTicker(text):
     regex_pattern = re.compile(r'[$][A-Za-z][\S]*')
-    return regex_pattern.sub("", text)
+    return re.sub(regex_pattern, "", text)
 
 for file in onlyfiles:
     
@@ -49,9 +49,12 @@ for file in onlyfiles:
           raw_text = raw_texts[idx]
           
           # https://stackoverflow.com/questions/8376691/how-to-remove-hashtag-user-link-of-a-tweet-using-regular-expression
+         
           raw_text = re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)", "", raw_text) # remove url, punctuations
+          raw_text = re.sub(r"\$\w*", "", raw_text)
           raw_text = deTicker(raw_text) # remove $tickers
           raw_text = re.sub(r"[\n]", "", raw_text) # remove new line (\n)
+
           raw_text = deEmojify(raw_text) # remove emoji
           raw_texts[idx] = raw_text
         
@@ -67,8 +70,7 @@ for file in onlyfiles:
         newfilename = file[:-4] + str("_cleaned.csv")
         
         df.to_csv(newfilename, index = False)
-        break
-        
+                
     else:
         
         continue
