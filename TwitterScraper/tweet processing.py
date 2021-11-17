@@ -39,6 +39,8 @@ for file in onlyfiles:
         filepath = mypath + str("/") + file
         df = pd.read_csv(filepath)
 
+        print(filepath)        
+        
         df["Datetime"] = pd.to_datetime(df["Datetime"])
         
         df["Date"] = df["Datetime"].dt.date
