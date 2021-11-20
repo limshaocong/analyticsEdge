@@ -22,10 +22,11 @@ def get_tweets(ticker):
     tweets_list = []    
 
     # Define search string
-    search_str = "$" + str(ticker) + " since:2020-01-01 until:2021-01-01" 
+    search_str = "$" + str(ticker) + " since:2019-01-01 until:2020-01-01" 
     
     for i, tweet in enumerate(sntwitter.TwitterSearchScraper(search_str).get_items()):
         tweets_list.append([tweet.date, tweet.id, tweet.content, tweet.user.username])
+        print(tweet.date)
 
     print(ticker, " End")    
     print("Duration: {}".format(datetime.now() - start_time))
@@ -34,14 +35,13 @@ def get_tweets(ticker):
     tweets_df = pd.DataFrame(tweets_list, columns=['Datetime', 'Tweet Id', 'Text', 'Username'])
     
     # Set file name for exporting
-    file_name = str(ticker) + "_tweets_2020.csv"
+    file_name = str(ticker) + "_tweets_2019.csv"
     
     # Export dataframe into a CSV
     tweets_df.to_csv(file_name , sep = ',', index = False)
     
-tickers = pd.read_csv("Tickers_reduced_Jean.csv")
-tickers = tickers["Tickers"].tolist()
+tickers = ["GOOGL", "NFLX", "AMZN"]
 
-for ticker in tickers:
+for ticker in tickers[1:]:
     get_tweets(ticker)
     

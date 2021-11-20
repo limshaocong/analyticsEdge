@@ -12,12 +12,12 @@ import os
 from os import listdir, chdir
 from os.path import isfile, join
 
-os.chdir("/Users/shaoc/OneDrive - Massachusetts Institute of Technology/Twitter/Cleaned") # update path accordingly
+os.chdir("/Users/shaoc/OneDrive - Massachusetts Institute of Technology/Twitter/Cleaned/2019") # update path accordingly
 
-mypath = "/Users/shaoc/OneDrive - Massachusetts Institute of Technology/Twitter" # update path accordingly
+mypath = "/Users/shaoc/OneDrive - Massachusetts Institute of Technology/Twitter/2019" # update path accordingly
 
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
-suffix = "2020.csv"
+suffix = "2019.csv"
 
 def deEmojify(text):
     regrex_pattern = re.compile(pattern = "["
