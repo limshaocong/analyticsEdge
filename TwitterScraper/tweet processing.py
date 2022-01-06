@@ -12,9 +12,9 @@ import os
 from os import listdir, chdir
 from os.path import isfile, join
 
-os.chdir("/Users/shaoc/OneDrive - Massachusetts Institute of Technology/Twitter/Cleaned/2021") # update path accordingly
+os.chdir("/Users/shaoc/OneDrive - Massachusetts Institute of Technology/Twitter/Cleaned/2020") # update path accordingly
 
-mypath = "/Users/shaoc/OneDrive - Massachusetts Institute of Technology/Twitter/2021" # update path accordingly
+mypath = "/Users/shaoc/OneDrive - Massachusetts Institute of Technology/Twitter/2020" # update path accordingly
 
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 suffix = "2021.csv"
